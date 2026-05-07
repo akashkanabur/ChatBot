@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainScreen">
+
+    <!-- MAIN -->
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="com.example.chatbot.ui.MainScreen"
+        android:label="Main"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_main_to_suggested"  app:destination="@id/suggestedScreen" />
+        <action android:id="@+id/action_main_to_inventory"  app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_main_to_appliances" app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_main_to_profile"    app:destination="@id/profileScreen" />
+        <action android:id="@+id/action_main_open_drawer"   app:destination="@id/drawerContent" />
+    </fragment>
+
+    <!-- DRAWER -->
+    <fragment
+        android:id="@+id/drawerContent"
+        android:name="com.example.chatbot.ui.DrawerContent"
+        android:label="Drawer"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_drawer_close"        app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_drawer_to_suggested" app:destination="@id/suggestedScreen" />
+        <action android:id="@+id/action_drawer_new_chat"     app:destination="@id/mainScreen" />
+    </fragment>
+
+    <!-- SUGGESTED -->
+    <fragment
+        android:id="@+id/suggestedScreen"
+        android:name="com.example.chatbot.ui.SuggestedScreen"
+        android:label="Suggested"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_suggested_to_main"       app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_suggested_to_inventory"  app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_suggested_to_appliances" app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_suggested_to_profile"    app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- INVENTORY -->
+    <fragment
+        android:id="@+id/inventoryScreen"
+        android:name="com.example.chatbot.ui.InventoryScreen"
+        android:label="Inventory"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_inventory_to_main"        app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_inventory_to_grocerylist" app:destination="@id/groceryListScreen" />
+        <action android:id="@+id/action_inventory_to_suggested"   app:destination="@id/suggestedScreen" />
+        <action android:id="@+id/action_inventory_to_fridge"      app:destination="@id/fridgeScreen" />
+        <action android:id="@+id/action_inventory_to_appliances"  app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_inventory_to_profile"     app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- GROCERY LIST -->
+    <fragment
+        android:id="@+id/groceryListScreen"
+        android:name="com.example.chatbot.ui.GroceryListScreen"
+        android:label="Grocery List"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_grocerylist_to_inventory"  app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_grocerylist_to_main"       app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_grocerylist_to_appliances" app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_grocerylist_to_profile"    app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- FRIDGE -->
+    <fragment
+        android:id="@+id/fridgeScreen"
+        android:name="com.example.chatbot.ui.FridgeScreen"
+        android:label="Fridge"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_fridge_to_inventory"  app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_fridge_to_main"       app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_fridge_to_appliances" app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_fridge_to_profile"    app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- APPLIANCES -->
+    <fragment
+        android:id="@+id/appliancesScreen"
+        android:name="com.example.chatbot.ui.AppliancesScreen"
+        android:label="Appliances"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_appliances_to_main"      app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_appliances_to_detail"    app:destination="@id/applianceDetailScreen" />
+        <action android:id="@+id/action_appliances_to_inventory" app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_appliances_to_profile"   app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- APPLIANCE DETAIL -->
+    <fragment
+        android:id="@+id/applianceDetailScreen"
+        android:name="com.example.chatbot.ui.ApplianceDetailScreen"
+        android:label="Appliance Detail"
+        tools:layout="@android:layout/activity_list_item">
+        <argument
+            android:name="applianceId"
+            app:argType="string"
+            android:defaultValue="refrigerator" />
+        <action android:id="@+id/action_detail_to_appliances"        app:destination="@id/appliancesScreen" />
+        <action android:id="@+id/action_detail_remove_to_appliances" app:destination="@id/appliancesScreen" app:popUpTo="@id/appliancesScreen" app:popUpToInclusive="false" />
+        <action android:id="@+id/action_detail_to_main"              app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_detail_to_inventory"         app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_detail_to_profile"           app:destination="@id/profileScreen" />
+    </fragment>
+
+    <!-- PROFILE -->
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="com.example.chatbot.ui.ProfileScreen"
+        android:label="Profile"
+        tools:layout="@android:layout/activity_list_item">
+        <action android:id="@+id/action_profile_to_main"       app:destination="@id/mainScreen" />
+        <action android:id="@+id/action_profile_logout"        app:destination="@id/mainScreen" app:popUpTo="@id/mainScreen" app:popUpToInclusive="true" />
+        <action android:id="@+id/action_profile_to_inventory"  app:destination="@id/inventoryScreen" />
+        <action android:id="@+id/action_profile_to_appliances" app:destination="@id/appliancesScreen" />
+    </fragment>
+
+</navigation>
